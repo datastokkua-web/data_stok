@@ -1,0 +1,35 @@
+# ========================================================
+# SIBN (Sistem Informasi Blanko Nikah) - Kabupaten Tangerang
+# Apache Server Configuration File (.htaccess)
+# Designed for InfinityFree, cPanel, and Shared Hosting Servers
+# ========================================================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Route all API calls directly to the PHP API Engine
+  # Re-writes /api/auth/login -> /api.php?route=auth/login
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^api/(.*)$ api.php?route=$1 [QSA,L]
+
+  # 2. Support SPA routing for the React frontend
+  # Directs all other non-file and non-directory requests to index.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ index.html [L]
+</IfModule>
+
+# Prevent directory browsing for security
+Options -Indexes
+
+# Set upload limits (some hostings allow overriding this via htaccess)
+<IfModule mod_php7.c>
+  php_value upload_max_filesize 10M
+  php_value post_max_size 10M
+</IfModule>
+<IfModule mod_php.c>
+  php_value upload_max_filesize 10M
+  php_value post_max_size 10M
+</IfModule>

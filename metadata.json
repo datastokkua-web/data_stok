@@ -1,0 +1,8 @@
+{
+  "name": "Remix: SIBN - Sistem Informasi Blanko Nikah",
+  "description": "Sistem Monitoring Persediaan Blanko Nikah Kementerian Agama Kabupaten Tangerang",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
